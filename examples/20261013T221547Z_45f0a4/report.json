@@ -1,0 +1,74 @@
+{
+  "started_utc": "20261013T221547Z",
+  "model": "nvidia/Nemotron-3_5-Lightning",
+  "image_id": "sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1",
+  "status": "verified_for_four_demo_tests",
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "failed",
+      "usage": {
+        "prompt_tokens": 2679,
+        "completion_tokens": 77,
+        "total_tokens": 2756
+      },
+      "finish_reason": "stop",
+      "generation_settings": {
+        "max_tokens": 4096,
+        "temperature": 0.2,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "response_characters": 295,
+      "tests": {
+        "tests_run": 4,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0,
+        "passed": false,
+        "output": "test_distinct_events_for_same_customer_create_two_orders (replayfix_under_test.WebhookTests.test_distinct_events_for_same_customer_create_two_orders) ... ok\ntest_duplicate_after_database_reopen_creates_one_order (replayfix_under_test.WebhookTests.test_duplicate_after_database_reopen_creates_one_order) ... ok\ntest_duplicate_event_creates_one_order (replayfix_under_test.WebhookTests.test_duplicate_event_creates_one_order) ... ok\ntest_simultaneous_duplicate_deliveries_create_one_order (replayfix_concurrency_test.concurrency_tests_for.<locals>.ConcurrentDeliveryTests.test_simultaneous_duplicate_deliveries_create_one_order) ... FAIL\n\n======================================================================\nFAIL: test_simultaneous_duplicate_deliveries_create_one_order (replayfix_concurrency_test.concurrency_tests_for.<locals>.ConcurrentDeliveryTests.test_simultaneous_duplicate_deliveries_create_one_order)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/work/replayfix_concurrency_test.py\", line 111, in test_simultaneous_duplicate_deliveries_create_one_order\n    self.assertEqual(\nAssertionError: 2 != 1 : Two overlapping deliveries of evt_101 must create exactly one order.\n\n----------------------------------------------------------------------\nRan 4 tests in 0.015s\n\nFAILED (failures=1)\n"
+      }
+    },
+    {
+      "attempt": 2,
+      "status": "passed",
+      "usage": {
+        "prompt_tokens": 3091,
+        "completion_tokens": 90,
+        "total_tokens": 3181
+      },
+      "finish_reason": "stop",
+      "generation_settings": {
+        "max_tokens": 4096,
+        "temperature": 0.2,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "response_characters": 334,
+      "tests": {
+        "tests_run": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": true,
+        "output": "test_distinct_events_for_same_customer_create_two_orders (replayfix_under_test.WebhookTests.test_distinct_events_for_same_customer_create_two_orders) ... ok\ntest_duplicate_after_database_reopen_creates_one_order (replayfix_under_test.WebhookTests.test_duplicate_after_database_reopen_creates_one_order) ... ok\ntest_duplicate_event_creates_one_order (replayfix_under_test.WebhookTests.test_duplicate_event_creates_one_order) ... ok\ntest_simultaneous_duplicate_deliveries_create_one_order (replayfix_concurrency_test.concurrency_tests_for.<locals>.ConcurrentDeliveryTests.test_simultaneous_duplicate_deliveries_create_one_order) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.008s\n\nOK\n"
+      }
+    }
+  ],
+  "started_from": "dashboard",
+  "fixture_sha256": {
+    "replayfix_bug_demo.py": "127ad2eb5f074b6b18739c0e548346d8b03282988ecb1c730cff360ac084d1aa",
+    "replayfix_concurrency_test.py": "01203b5f7ec4cfdcbc0bdd1cb30b0b1cb542e468f504268d7d69996097efc8be"
+  },
+  "baseline": {
+    "tests_run": 4,
+    "failures": 3,
+    "errors": 0,
+    "skipped": 0,
+    "passed": false,
+    "output": "test_distinct_events_for_same_customer_create_two_orders (replayfix_under_test.WebhookTests.test_distinct_events_for_same_customer_create_two_orders) ... ok\ntest_duplicate_after_database_reopen_creates_one_order (replayfix_under_test.WebhookTests.test_duplicate_after_database_reopen_creates_one_order) ... FAIL\ntest_duplicate_event_creates_one_order (replayfix_under_test.WebhookTests.test_duplicate_event_creates_one_order) ... FAIL\ntest_simultaneous_duplicate_deliveries_create_one_order (replayfix_concurrency_test.concurrency_tests_for.<locals>.ConcurrentDeliveryTests.test_simultaneous_duplicate_deliveries_create_one_order) ... FAIL\n\n======================================================================\nFAIL: test_duplicate_after_database_reopen_creates_one_order (replayfix_under_test.WebhookTests.test_duplicate_after_database_reopen_creates_one_order)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/work/replayfix_bug_demo.py\", line 75, in test_duplicate_after_database_reopen_creates_one_order\n    self.assertEqual(self.order_count(), 1,\nAssertionError: 2 != 1 : Duplicate protection must survive reopening the database.\n\n======================================================================\nFAIL: test_duplicate_event_creates_one_order (replayfix_under_test.WebhookTests.test_duplicate_event_creates_one_order)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/work/replayfix_bug_demo.py\", line 60, in test_duplicate_event_creates_one_order\n    self.assertEqual(self.order_count(), 1,\nAssertionError: 2 != 1 : Repeated delivery must not create a second order.\n\n======================================================================\nFAIL: test_simultaneous_duplicate_deliveries_create_one_order (replayfix_concurrency_test.concurrency_tests_for.<locals>.ConcurrentDeliveryTests.test_simultaneous_duplicate_deliveries_create_one_order)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/work/replayfix_concurrency_test.py\", line 111, in test_simultaneous_duplicate_deliveries_create_one_order\n    self.assertEqual(\nAssertionError: 2 != 1 : Two overlapping deliveries of evt_101 must create exactly one order.\n\n----------------------------------------------------------------------\nRan 4 tests in 0.021s\n\nFAILED (failures=3)\n"
+  },
+  "controller_version": "0.3.0"
+}
